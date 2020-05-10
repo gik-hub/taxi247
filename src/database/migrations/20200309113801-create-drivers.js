@@ -25,6 +25,7 @@ module.exports = {
       },
       taxis_id: {
         type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
         references: { model: 'taxis', key: 'id', as: 'taxis_id' },
       },
       current_location: {
@@ -32,6 +33,7 @@ module.exports = {
       },
       availability_status_id: {
         type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
         references: {
           model: 'availability_status',
           key: 'id',

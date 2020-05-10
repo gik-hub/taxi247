@@ -13,18 +13,13 @@ module.exports = (sequelize, DataTypes) => {
   );
   trip_orders.associate = function (models) {
     // associations can be defined here
-    trip_orders.belongsTo(model.trip_invoices, {
+    trip_orders.belongsTo(models.trip_invoices, {
       foreignKey: 'trip_order_id',
     });
 
-    trip_orders.hasOne(model.clients, {
+    trip_orders.hasOne(models.clients, {
       foreignKey: 'id',
       sourceKey: 'clients_id',
-    });
-
-    trip_orders.hasOne(model.trips, {
-      foreignKey: 'id',
-      sourceKey: 'trips_id',
     });
   };
   return trip_orders;

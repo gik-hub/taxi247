@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       status: DataTypes.STRING,
     },
-    {}
+    { freezeTableName: true }
   );
   availability_status.associate = function (models) {
     // associations can be defined here

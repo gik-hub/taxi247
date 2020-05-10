@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       model_description: DataTypes.STRING,
       active: DataTypes.BOOLEAN,
     },
-    {}
+    { freezeTableName: true }
   );
   taxis.associate = function (models) {
     // associations can be defined here

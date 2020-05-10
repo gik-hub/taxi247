@@ -16,13 +16,14 @@ module.exports = (sequelize, DataTypes) => {
   );
   drivers.associate = function (models) {
     // associations can be defined here
-    drivers.belongsTo(models.trips, {
-      foreignKey: 'drivers_id',
+    drivers.hasOne(models.taxis, {
+      foreignKey: 'taxis_id',
+      sourceKey: 'id',
     });
 
-    drivers.hasOne(models.taxis, {
-      foreignKey: 'id',
-      sourceKey: 'taxis_id',
+    drivers.hasOne(models.availability_status, {
+      foreignKey: 'availability_status_id',
+      sourceKey: 'id',
     });
   };
   return drivers;
