@@ -23,6 +23,10 @@ module.exports = {
       expiry_date: {
         type: Sequelize.DATE,
       },
+      taxis_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'taxis', key: 'id', as: 'taxis_id' },
+      },
       current_location: {
         type: Sequelize.GEOGRAPHY,
       },

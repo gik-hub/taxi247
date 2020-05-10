@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     taxis.belongsTo(models.trips, {
       foreignKey: 'taxis_id',
     });
+
+    taxis.belongsTo(models.drivers, {
+      foreignKey: 'taxis_id',
+    });
   };
   return taxis;
 };

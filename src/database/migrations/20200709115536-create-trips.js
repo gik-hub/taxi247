@@ -12,10 +12,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'drivers', key: 'id', as: 'drivers_id' },
       },
-      taxis_id: {
-        type: Sequelize.INTEGER,
-        references: { model: 'taxis', key: 'id', as: 'taxis_id' },
-      },
       trip_order_id: {
         type: Sequelize.INTEGER,
         references: { model: 'trip_orders', key: 'id', as: 'trip_order_id' },
@@ -23,8 +19,14 @@ module.exports = {
       start_time: {
         type: Sequelize.DATE,
       },
+      pickup_point: {
+        type: Sequelize.GEOGRAPHY,
+      },
       end_time: {
         type: Sequelize.DATE,
+      },
+      drop_point: {
+        type: Sequelize.GEOGRAPHY,
       },
       createdAt: {
         allowNull: false,

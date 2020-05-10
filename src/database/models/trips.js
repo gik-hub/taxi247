@@ -4,10 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     'trips',
     {
       drivers_id: DataTypes.INTEGER,
-      taxis_id: DataTypes.INTEGER,
       trip_order_id: DataTypes.INTEGER,
       start_time: DataTypes.DATE,
+      pickup_point: DataTypes.GEOMETRY,
       end_time: DataTypes.DATE,
+      drop_point: DataTypes.GEOMETRY,
     },
     {}
   );
@@ -24,11 +25,6 @@ module.exports = (sequelize, DataTypes) => {
     trips.hasOne(models.drivers, {
       foreignKey: 'id',
       sourceKey: 'drivers_id',
-    });
-
-    trips.hasOne(models.taxis, {
-      foreignKey: 'id',
-      sourceKey: 'taxis_id',
     });
 
     trips.hasOne(models.trip_orders, {
