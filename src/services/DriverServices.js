@@ -1,4 +1,4 @@
-import Sequelize, { Op } from 'sequelize';
+import Sequelize, { QueryTypes } from 'sequelize';
 import database from '../database/models';
 
 class DriverServices {
@@ -47,6 +47,23 @@ class DriverServices {
     } catch (error) {
       console.log('*********** error **************** \n', error);
     }
+  }
+
+  static async findDriverInRange(dist, lat, lon) {
+    // ST_MakePoint(longitude, latitude);
+    const query = `
+      SELECT * FROM "drivers"
+      WHERE 
+        ST_DWithin(drivers.current_location,
+            ST_MakePoint(${lon},${lat})::geography,
+            ${dist * 1000});
+      `;
+
+    const inRange = await database.sequelize.query(query, {
+      type: database.sequelize.QueryTypes.SELECT,
+    });
+
+    return inRange;
   }
 }
 

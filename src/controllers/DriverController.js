@@ -2,7 +2,12 @@ import Util from '../utils/Utils';
 import DriverServices from '../services/DriverServices';
 
 const util = new Util();
-const { getAllDrivers, findDriverById, findDriverByStatus } = DriverServices;
+const {
+  getAllDrivers,
+  findDriverById,
+  findDriverByStatus,
+  findDriverInRange,
+} = DriverServices;
 
 class DriverController {
   /**
@@ -47,18 +52,32 @@ class DriverController {
    * @param {*} res - response object sent to user
    * @returns {object} returns an object of available drivers
    */
-  static async getAvailableDrivers(req, res) {
-    const { status, distance } = req.query;
+  static async findDriverByStatus(req, res) {
+    const { value } = req.query;
     const statusOptions = ['free', 'offduty', 'busy'];
 
-    if (!statusOptions.includes(status.toLowerCase())) {
+    if (!statusOptions.includes(value.toLowerCase())) {
       util.setError(400, `Query status against ${statusOptions.toString()}`);
       return util.send(res);
     }
 
-    const drivers = await findDriverByStatus(status);
+    const drivers = await findDriverByStatus(value);
 
-    util.setSuccess(200, `Find where ${status} in ${distance}`, drivers);
+    util.setSuccess(200, `All ${value} driver(s)`, drivers);
+    return util.send(res);
+  }
+
+  static async findDriverInRange(req, res) {
+    const { distance, latitude, longtude } = req.query;
+
+    const driversInRange = await findDriverInRange(distance, latitude, longtude);
+
+    const msg =
+      driversInRange.length > 0
+        ? `Driver(s) ${distance}KM from point`
+        : `No Driver(s) ${distance}KM from point`;
+
+    util.setSuccess(200, msg, driversInRange);
     return util.send(res);
   }
 }
