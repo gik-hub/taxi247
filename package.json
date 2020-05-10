@@ -5,6 +5,11 @@
   "main": "app.js",
   "scripts": {
     "dev": "export NODE_ENV=development && nodemon --exec babel-node src/index.js",
+    "migrate": "sequelize db:migrate",
+    "seed": "sequelize db:seed:undo:all && sequelize db:seed:all",
+    "migrate:reset": "sequelize db:migrate:undo:all",
+    "migrate:refresh": "npm run migrate:reset && npm run migrate",
+    "db:reset": "npm run migrate:refresh && npm run seed",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,8 +18,12 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "errorhandler": "^1.5.1",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^8.1.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.7"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
