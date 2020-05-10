@@ -23,6 +23,13 @@ module.exports = {
       expiry_date: {
         type: Sequelize.DATE,
       },
+<<<<<<< HEAD
+=======
+      taxis_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'taxis', key: 'id', as: 'taxis_id' },
+      },
+>>>>>>> chore: database-setup
       current_location: {
         type: Sequelize.GEOGRAPHY,
       },

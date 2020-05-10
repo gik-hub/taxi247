@@ -14,6 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     taxis.belongsTo(models.trips, {
       foreignKey: 'taxis_id',
     });
+<<<<<<< HEAD
+=======
+
+    taxis.belongsTo(models.drivers, {
+      foreignKey: 'taxis_id',
+    });
+>>>>>>> chore: database-setup
   };
   return taxis;
 };
