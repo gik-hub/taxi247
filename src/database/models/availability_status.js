@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   availability_status.associate = function (models) {
     // associations can be defined here
-    availability_status.belongsTo(models.drivers, {
+    availability_status.hasMany(models.drivers, {
       foreignKey: 'availability_status_id',
     });
   };

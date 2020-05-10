@@ -36,8 +36,6 @@ module.exports = {
         onDelete: 'CASCADE',
         references: {
           model: 'availability_status',
-          key: 'id',
-          as: 'availability_status_id',
         },
       },
       createdAt: {

@@ -21,9 +21,8 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: 'id',
     });
 
-    drivers.hasOne(models.availability_status, {
+    drivers.belongsTo(models.availability_status, {
       foreignKey: 'availability_status_id',
-      sourceKey: 'id',
     });
   };
   return drivers;

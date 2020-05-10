@@ -3,8 +3,10 @@ import DriverController from '../controllers/DriverController';
 
 const router = new Router();
 
-const { getDrivers } = DriverController;
+const { getDrivers, getADriver, getAvailableDrivers } = DriverController;
 
-router.get('/', getDrivers);
+router.get('/all', getDrivers);
+router.get('/search?', getAvailableDrivers);
+router.get('/:id/details', getADriver);
 
 export default router;
