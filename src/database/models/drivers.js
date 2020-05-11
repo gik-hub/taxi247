@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       current_location: DataTypes.GEOMETRY,
       availability_status_id: DataTypes.INTEGER,
     },
-    {}
+    { freezeTableName: true  }
   );
   drivers.associate = function (models) {
     // associations can be defined here

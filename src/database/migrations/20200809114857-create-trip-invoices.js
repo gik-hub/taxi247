@@ -12,9 +12,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'trips', key: 'id', as: 'trip_id' },
       },
-      trip_order_id: {
+      trip_orders_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'trip_orders', key: 'id', as: 'trip_order_id' },
+        references: { model: 'trip_orders', key: 'id', as: 'trip_orders_id' },
       },
       invoice_total: {
         type: Sequelize.INTEGER,

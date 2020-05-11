@@ -1,20 +1,14 @@
-import Sequelize, { QueryTypes } from 'sequelize';
+import { Op } from 'sequelize';
 import database from '../database/models';
 
 class DriverServices {
   static async getAllDrivers() {
     try {
-      const drivers = await database.drivers.findAll({
-        // include: [
-        //   {
-        //     model: database.availability_status,
-        //     required: false,
-        //   },
-        // ],
-      });
+      const drivers = await database.drivers.findAll({});
       return drivers.map((data) => data.dataValues);
     } catch (error) {
       console.log('*********** error **************** \n', error);
+      throw 'Server error';
     }
   }
 
@@ -25,6 +19,27 @@ class DriverServices {
       });
       if (!searchDriver) return null;
       return searchDriver.dataValues;
+    } catch (error) {
+      console.log('*********** error **************** \n', error);
+    }
+  }
+
+  static async findFreeDriverById(id) {
+    try {
+      const driver = await database.drivers.findOne({
+        where: { id },
+        include: [
+          {
+            model: database.availability_status,
+            attributes: ['status'],
+            where: {
+              [Op.and]: [{ status: 'free' }],
+            },
+          },
+        ],
+      });
+      if (!driver) return null;
+      return driver.dataValues;
     } catch (error) {
       console.log('*********** error **************** \n', error);
     }

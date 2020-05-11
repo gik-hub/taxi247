@@ -10,7 +10,7 @@ module.exports = {
       },
       clients_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'clients', key: 'id', as: 'clients_id' },
+        references: { model: 'clients' },
       },
       pickup_point: {
         type: Sequelize.GEOGRAPHY,
@@ -25,9 +25,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'trip_order_status',
-          key: 'id',
-          as: 'trip_order_status_id',
         },
+      },
+      trip_orders_id: {
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
