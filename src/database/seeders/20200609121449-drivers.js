@@ -2,7 +2,7 @@ export function up(queryInterface, Sequelize) {
   return queryInterface.bulkInsert(
     'drivers',
     [
-      // Outside Kigali
+      // Within Kigali
       {
         email: 'egalvan0@dropbox.com',
         first_name: 'Ertha',
@@ -10,7 +10,7 @@ export function up(queryInterface, Sequelize) {
         driving_licence: 'CHE-025',
         expiry_date: '2020-04-17',
         taxis_id: null,
-        current_location: Sequelize.fn('ST_GeomFromText', 'POINT(2.31 29.52)'),
+        current_location: Sequelize.fn('ST_GeomFromText', 'POINT(30.0810 1.9393)'),
         availability_status_id: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -22,7 +22,7 @@ export function up(queryInterface, Sequelize) {
         driving_licence: 'WON-748',
         expiry_date: '2020-04-08',
         taxis_id: 9,
-        current_location: Sequelize.fn('ST_GeomFromText', 'POINT(2.29 28.54)'),
+        current_location: Sequelize.fn('ST_GeomFromText', 'POINT(30.1098 1.9515)'),
         availability_status_id: 2,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -34,7 +34,7 @@ export function up(queryInterface, Sequelize) {
         driving_licence: 'GNS-871',
         expiry_date: '2020-05-02',
         taxis_id: 8,
-        current_location: Sequelize.fn('ST_GeomFromText', 'POINT(1.41 29.15)'),
+        current_location: Sequelize.fn('ST_GeomFromText', 'POINT(30.0463 1.9912)'),
         availability_status_id: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -48,13 +48,12 @@ export function up(queryInterface, Sequelize) {
         taxis_id: 7,
         current_location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(1.4998 29.6350)'
+          'POINT(30.0975393 1.9320231)'
         ),
         availability_status_id: 3,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      // Within Kigali
       {
         email: 'famys4@scientificamerican.com',
         first_name: 'Fania',
@@ -64,7 +63,7 @@ export function up(queryInterface, Sequelize) {
         taxis_id: 6,
         current_location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(1.9053 30.0810)'
+          'POINT(30.1474 1.9998)'
         ),
         availability_status_id: 1,
         createdAt: new Date(),
@@ -79,12 +78,13 @@ export function up(queryInterface, Sequelize) {
         taxis_id: 5,
         current_location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(1.9912 30.0463)'
+          'POINT(30.1301 1.9362)'
         ),
         availability_status_id: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      // off kigali
       {
         email: 'ekem6@time.com',
         first_name: 'Edeline',
@@ -94,7 +94,7 @@ export function up(queryInterface, Sequelize) {
         taxis_id: 3,
         current_location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(2.0086 30.1358)'
+          'POINT(29.2617 1.6959)'
         ),
         availability_status_id: 2,
         createdAt: new Date(),
@@ -109,7 +109,7 @@ export function up(queryInterface, Sequelize) {
         taxis_id: 1,
         current_location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(1.9998 30.1474)'
+          'POINT(29.7394 2.5967)'
         ),
         availability_status_id: 2,
         createdAt: new Date(),
@@ -124,7 +124,7 @@ export function up(queryInterface, Sequelize) {
         taxis_id: 4,
         current_location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(1.9515 30.1098)'
+          'POINT(30.0189 1.4356)'
         ),
         availability_status_id: 3,
         createdAt: new Date(),
@@ -139,7 +139,7 @@ export function up(queryInterface, Sequelize) {
         taxis_id: 2,
         current_location: Sequelize.fn(
           'ST_GeomFromText',
-          'POINT(1.9114 30.0954)'
+          'POINT(30.5174 1.9463)'
         ),
         availability_status_id: 2,
         createdAt: new Date(),
