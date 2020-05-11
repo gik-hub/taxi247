@@ -10,11 +10,11 @@ module.exports = (sequelize, DataTypes) => {
       adress: DataTypes.STRING,
       points: DataTypes.INTEGER,
     },
-    {}
+    { freezeTableName: true  }
   );
   clients.associate = function (models) {
     // associations can be defined here
-    clients.belongsTo(models.trip_orders, {
+    clients.hasMany(models.trip_orders, {
       foreignKey: 'clients_id',
     });
   };

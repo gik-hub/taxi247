@@ -8,13 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      trip_id: {
+      trips_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'trips', key: 'id', as: 'trip_id' },
+        references: { model: 'trips' },
       },
-      trip_order_id: {
+      trip_orders_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'trip_orders', key: 'id', as: 'trip_order_id' },
+        references: { model: 'trip_orders' },
       },
       invoice_total: {
         type: Sequelize.INTEGER,
