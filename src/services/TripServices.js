@@ -67,6 +67,21 @@ class TripServices {
     });
     return invoice.dataValues;
   }
+
+  static async getActiveTrips() {
+    try {
+      const trips = await database.trip_orders.findAll({
+        where: {
+          trip_order_status_id: 3,
+        },
+      });
+
+      if (!trips) return null;
+      return trips.map((trip) => trip.dataValues);
+    } catch (error) {
+      console.log('error', error);
+    }
+  }
 }
 
 export default TripServices;

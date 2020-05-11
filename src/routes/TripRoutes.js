@@ -4,10 +4,11 @@ import TripRequestValidator from '../middlewares/TripRequestValidator';
 
 const router = new Router();
 
-const { createTrip, completeTrip } = TripController;
+const { createTrip, completeTrip, getActiveTripOrders } = TripController;
 const { validateNewRequest, validateCompleteRequest } = TripRequestValidator;
 
 router.post('/create', validateNewRequest, createTrip);
 router.post('/complete', validateCompleteRequest, completeTrip);
+router.get('/active', getActiveTripOrders);
 
 export default router;

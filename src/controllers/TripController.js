@@ -2,7 +2,7 @@ import Utils from '../utils/Utils';
 import TripServices from '../services/TripServices';
 
 const util = new Utils();
-const { createTrip, completeTripRequest } = TripServices;
+const { createTrip, completeTripRequest, getActiveTrips } = TripServices;
 
 class TripController {
   static async createTrip(req, res) {
@@ -39,6 +39,15 @@ class TripController {
         .status(500)
         .json({ status: res.statusCode, error: 'Oops something went wrong!' });
     }
+  }
+
+  static async getActiveTripOrders(req, res) {
+    try {
+      const activeTrips = await getActiveTrips();
+
+      util.setSuccess(201, 'Active trip orders', activeTrips);
+      return util.send(res);
+    } catch (error) {}
   }
 }
 
