@@ -1,9 +1,12 @@
 import Util from '../utils/Utils';
 import DriverServices from '../services/DriverServices';
 import OrderServices from '../services/OrderServices';
+import TripServices from '../services/TripServices';
 
 const { findFreeDriverById } = DriverServices;
 const { findOpenOrderById } = OrderServices;
+const { getTripById } = TripServices;
+
 const util = new Util();
 
 class TripRequestValidator {
@@ -47,7 +50,17 @@ class TripRequestValidator {
   }
 
   static async validateCompleteRequest(req, res, next) {
-    // ensure the drivers_id exists and is an integer
+    const { trips_id } = req.body;
+    // ensure the trip to complete exists
+    if (isNaN(trips_id)) {
+      util.setError(400, 'Invalid value of trips_id');
+      return util.send(res);
+    }
+    const trip = await getTripById(trips_id);
+    if (!trip) {
+      util.setError(400, `Trip with id ${trips_id} does not exist`);
+      return util.send(res);
+    }
     // ensure the trip order exists and is an integer
     next();
   }
