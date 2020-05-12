@@ -73,6 +73,14 @@ class RequestValidator {
 
   static async requestExistValidation(req, res, next) {
     const { id } = req.params;
+    const { distance } = req.query;
+    const checkDist = !distance ? false : true;
+    if (checkDist) {
+      if (isNaN(distance)) {
+        util.setError(400, 'Invalid query type - distance');
+        return util.send(res);
+      }
+    }
     const ridersOrder = await findOpenOrderById(id);
     if (!ridersOrder) {
       util.setError(400, 'Resource Not found!');
