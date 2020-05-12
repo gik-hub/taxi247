@@ -39,7 +39,7 @@ class DriverController {
     }
     const getDriver = await findDriverById(req.params.id);
     if (!getDriver) {
-      util.setError(404, `No driver with an id of ${req.params.id}`);
+      util.setError(404, 'Resource Not Found!');
       return util.send(res);
     }
     util.setSuccess(200, 'Driver found!', getDriver);
@@ -69,7 +69,6 @@ class DriverController {
 
   static async findDriverInRange(req, res) {
     const { distance, latitude, longtude } = req.query;
-
     const driversInRange = await findDriverInRange(distance, latitude, longtude);
 
     const msg =

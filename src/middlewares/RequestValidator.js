@@ -9,7 +9,7 @@ const { getTripById } = TripServices;
 
 const util = new Util();
 
-class TripRequestValidator {
+class RequestValidator {
   /**
    *
    * @param {*} req - reqest object from the user
@@ -21,10 +21,7 @@ class TripRequestValidator {
     const { trip_orders_id, drivers_id, pickup_point } = req.body;
     // ensure trip_orders_id, drivers_id integers are valid
     if (isNaN(drivers_id) || isNaN(trip_orders_id)) {
-      util.setError(
-        400,
-        'Ensure the trip_orders_id and drivers_id are integers'
-      );
+      util.setError(400, 'Invalid parameter type');
       return util.send(res);
     }
     // ensure the drivers_id exists and is an integer
@@ -53,7 +50,7 @@ class TripRequestValidator {
     const { trips_id } = req.body;
     // ensure the trip to complete exists
     if (isNaN(trips_id)) {
-      util.setError(400, 'Invalid value of trips_id');
+      util.setError(400, 'Invalid parameter type');
       return util.send(res);
     }
     const trip = await getTripById(trips_id);
@@ -64,6 +61,27 @@ class TripRequestValidator {
     // ensure the trip order exists and is an integer
     next();
   }
+
+  static async validIntParams(req, res, next) {
+    const { id } = req.params;
+    if (isNaN(id)) {
+      util.setError(400, 'Invalid parameter type');
+      return util.send(res);
+    }
+    next();
+  }
+
+  static async requestExistValidation(req, res, next) {
+    const { id } = req.params;
+    const ridersOrder = await findOpenOrderById(id);
+    if (!ridersOrder) {
+      util.setError(400, 'Resource Not found!');
+      return util.send(res);
+    }
+    // attach the location to search against
+    req.body.refLocation = ridersOrder.pickup_point;
+    next();
+  }
 }
 
-export default TripRequestValidator;
+export default RequestValidator;

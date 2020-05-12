@@ -8,19 +8,14 @@ module.exports = (sequelize, DataTypes) => {
       last_name: DataTypes.STRING,
       driving_licence: DataTypes.STRING,
       expiry_date: DataTypes.DATE,
-      taxis_id: DataTypes.INTEGER,
+      taxi_reg_no: DataTypes.STRING,
       current_location: DataTypes.GEOMETRY,
       availability_status_id: DataTypes.INTEGER,
     },
-    { freezeTableName: true  }
+    { freezeTableName: true }
   );
   drivers.associate = function (models) {
     // associations can be defined here
-    drivers.hasOne(models.taxis, {
-      foreignKey: 'taxis_id',
-      sourceKey: 'id',
-    });
-
     drivers.belongsTo(models.availability_status, {
       foreignKey: 'availability_status_id',
     });

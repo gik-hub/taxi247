@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import TripController from '../controllers/TripController';
-import TripRequestValidator from '../middlewares/TripRequestValidator';
+import TripRequestValidator from '../middlewares/RequestValidator';
 
 const router = new Router();
 
