@@ -1,0 +1,280 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "taxi247",
+    "description": "taxi 24 API",
+    "contact": {}
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/drivers/all": {
+      "get": {
+        "description": "get all drivers",
+        "summary": "all drivers",
+        "tags": ["Drivers"],
+        "operationId": "alldrivers",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/drivers/1/details": {
+      "get": {
+        "description": "get a specific driver by ther id",
+        "summary": "driver by id",
+        "tags": ["Drivers"],
+        "operationId": "driverbyid",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/drivers/status": {
+      "get": {
+        "description": "get all drivers in a particular status",
+        "summary": "drivers by status",
+        "tags": ["Drivers"],
+        "operationId": "driversbystatus",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/drivers/range": {
+      "get": {
+        "description": "get all drivers in a given radius, 3km by default",
+        "summary": "drivers in a radius",
+        "tags": ["Drivers"],
+        "operationId": "driversinaradius",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "latitude",
+            "in": "query",
+            "required": true,
+            "type": "number",
+            "format": "double",
+            "description": ""
+          },
+          {
+            "name": "longtude",
+            "in": "query",
+            "required": true,
+            "type": "number",
+            "format": "double",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/riders/all": {
+      "get": {
+        "description": "get a list of all the riders",
+        "summary": "all riders",
+        "tags": ["Riders"],
+        "operationId": "allriders",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/riders/1/details": {
+      "get": {
+        "description": "get a specic rider by their id",
+        "summary": "rider by id",
+        "tags": ["Riders"],
+        "operationId": "riderbyid",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/riders/orders/3/closeDrivers": {
+      "get": {
+        "description": "get all drivers close to a rider with regard to a trip order",
+        "summary": "drivers close to rider",
+        "tags": ["Riders"],
+        "operationId": "driversclosetorider",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/trips/active": {
+      "get": {
+        "description": "get a list of all the active trips",
+        "summary": "active trips",
+        "tags": ["Trips"],
+        "operationId": "activetrips",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/trips/create": {
+      "post": {
+        "description": "create a new trip from the trip orders by assigning it to a driver",
+        "summary": "new trip",
+        "tags": ["Trips"],
+        "operationId": "newtrip",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/newtriprequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/trips/complete": {
+      "post": {
+        "description": "complete an initally started trip",
+        "summary": "complete trip",
+        "tags": ["Trips"],
+        "operationId": "completetrip",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/completetriprequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "newtriprequest": {
+      "title": "newtriprequest",
+      "example": {
+        "trip_orders_id": 2,
+        "drivers_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "trip_orders_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "drivers_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": ["trip_orders_id", "drivers_id"]
+    },
+    "completetriprequest": {
+      "title": "completetriprequest",
+      "example": {
+        "trips_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "trips_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": ["trips_id"]
+    }
+  },
+  "tags": [
+    {
+      "name": "Drivers",
+      "description": "drivers end point"
+    },
+    {
+      "name": "Riders",
+      "description": "Riders endpoints\n"
+    },
+    {
+      "name": "Trips",
+      "description": "trips requests"
+    }
+  ]
+}

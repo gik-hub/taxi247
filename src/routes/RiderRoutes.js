@@ -9,7 +9,7 @@ const { validIntParams, requestExistValidation } = RequestValidator;
 router.get('/all', getAllRiders);
 router.get('/:id/details', validIntParams, getSpecificRider);
 router.get(
-  '/orders/:id/closeDrivers',
+  '/orders/:id/closeDrivers?',
   validIntParams,
   requestExistValidation,
   getCloseDrivers
