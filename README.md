@@ -21,9 +21,9 @@
 7. run `npm run migrate` && `npm run seed` to create the schemas and seed
 8. run `npm run test` to test the application unit tests
 
-## Testing specific endpoints:
+## Testing specific endpoints: [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/14dde3cb05c0f432a5d1)
 
-- Run the application with `npm run dev` and then  [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/14dde3cb05c0f432a5d1)
+- Run the application with `npm run dev` 🚀
 
 ## Available API endpoints:
 
