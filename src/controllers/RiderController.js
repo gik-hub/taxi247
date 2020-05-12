@@ -1,4 +1,5 @@
 import Utils from '../utils/Utils';
+import { distanceBtnInKm } from '../utils/helper';
 import RiderServices from '../services/RiderServices';
 import DriverServices from '../services/DriverServices';
 
@@ -28,10 +29,38 @@ class RiderController {
     // default search radius is 3KMs
     const radius = distance || 3;
     // extract long an dlatitudes from the reference location
-    const longtudes = refLocation.coordinates[0];
-    const latitude = refLocation.coordinates[1];
-    const closeDrivers = await findDriverInRange(radius, latitude, longtudes);
-    util.setSuccess(200, 'Closest drivers', closeDrivers);
+    const refLongtudes = refLocation.coordinates[0];
+    const refLatitude = refLocation.coordinates[1];
+    const allDriversInRadius = await findDriverInRange(
+      radius,
+      refLatitude,
+      refLongtudes
+    );
+    const distDiffs = [];
+
+    // append distance between value
+    await allDriversInRadius.forEach((driver) => {
+      let driverLatitude = driver.current_location.coordinates[1];
+      let driverLongtude = driver.current_location.coordinates[0];
+      // distanceBtnInKm = (lat1, lon1, lat2, lon2)
+      const pointDiff = distanceBtnInKm(
+        refLatitude,
+        refLongtudes,
+        driverLatitude,
+        driverLongtude
+      );
+      driver.distance = pointDiff;
+      distDiffs.push(pointDiff);
+    });
+    // sort the drivers by distance
+    await allDriversInRadius.sort((driver1, driver2) => {
+      if (driver1.distance > driver2.distance) return -1;
+      if (driver1.distance < driver2.distance) return 1;
+    });
+
+    const bestChoices = allDriversInRadius.reverse().slice(0, 3);
+
+    util.setSuccess(200, 'Closest drivers', bestChoices);
     return util.send(res);
   }
 }
