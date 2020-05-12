@@ -25,7 +25,8 @@ class RiderController {
   }
 
   static async getCloseDrivers(req, res) {
-    const { refLocation, distance } = req.body;
+    const { distance } = req.query;
+    const { refLocation } = req.body;
     // default search radius is 3KMs
     const radius = distance || 3;
     // extract long an dlatitudes from the reference location
