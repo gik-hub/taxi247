@@ -23,10 +23,8 @@ module.exports = {
       expiry_date: {
         type: Sequelize.DATE,
       },
-      taxis_id: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: { model: 'taxis', key: 'id', as: 'taxis_id' },
+      taxi_reg_no: {
+        type: Sequelize.STRING,
       },
       current_location: {
         type: Sequelize.GEOGRAPHY,

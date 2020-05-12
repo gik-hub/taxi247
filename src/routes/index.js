@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import ClientRoutes from './ClientRoutes';
+import RiderRoutes from './RiderRoutes';
 import DriverRoutes from './DriverRoutes';
 import TripROutes from './TripRoutes';
 
 const router = new Router();
 
-router.use('/clients', ClientRoutes);
+router.use('/riders', RiderRoutes);
 router.use('/drivers', DriverRoutes);
 router.use('/trips', TripROutes);
 
