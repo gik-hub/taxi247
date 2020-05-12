@@ -69,12 +69,13 @@ class DriverController {
 
   static async findDriverInRange(req, res) {
     const { distance, latitude, longtude } = req.query;
-    const driversInRange = await findDriverInRange(distance, latitude, longtude);
+    const radius = distance || 3;
+    const driversInRange = await findDriverInRange(radius, latitude, longtude);
 
     const msg =
       driversInRange.length > 0
-        ? `Driver(s) ${distance}KM from point`
-        : `No Driver(s) ${distance}KM from point`;
+        ? `Driver(s) within ${distance || 3}KM`
+        : `No Driver(s) ${distance || 3}KM from point`;
 
     util.setSuccess(200, msg, driversInRange);
     return util.send(res);

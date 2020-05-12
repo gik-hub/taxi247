@@ -82,6 +82,23 @@ class RequestValidator {
     req.body.refLocation = ridersOrder.pickup_point;
     next();
   }
+
+  static async validateCloseDriverQuery(req, res, next) {
+    const { distance, latitude, longtude } = req.query;
+    const checkDist = !distance ? false : true;
+    if (checkDist) {
+      if (isNaN(distance)) {
+        util.setError(400, 'Invalid query type - distance');
+        return util.send(res);
+      }
+    }
+
+    if (isNaN(latitude) || isNaN(longtude)) {
+      util.setError(400, 'Invalid query type - latitude, longtude');
+      return util.send(res);
+    }
+    next();
+  }
 }
 
 export default RequestValidator;

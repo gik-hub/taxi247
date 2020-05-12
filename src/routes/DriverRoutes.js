@@ -1,7 +1,9 @@
 import { Router } from 'express';
 import DriverController from '../controllers/DriverController';
+import RequestValidator from '../middlewares/RequestValidator';
 
 const router = new Router();
+const { validateCloseDriverQuery } = RequestValidator;
 
 const {
   getDrivers,
@@ -12,7 +14,7 @@ const {
 
 router.get('/all', getDrivers);
 router.get('/status?', findDriverByStatus);
-router.get('/range?', findDriverInRange);
+router.get('/range?', validateCloseDriverQuery, findDriverInRange);
 router.get('/:id/details', getADriver);
 
 export default router;

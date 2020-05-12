@@ -45,7 +45,7 @@ class TripController {
     try {
       const activeTrips = await getActiveTrips();
 
-      util.setSuccess(201, 'Active trip orders', activeTrips);
+      util.setSuccess(200, 'Active trip orders', activeTrips);
       return util.send(res);
     } catch (error) {}
   }
