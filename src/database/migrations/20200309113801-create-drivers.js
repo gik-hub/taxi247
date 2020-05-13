@@ -29,6 +29,9 @@ module.exports = {
       current_location: {
         type: Sequelize.GEOGRAPHY,
       },
+      current_location_name: {
+        type: Sequelize.STRING,
+      },
       availability_status_id: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',

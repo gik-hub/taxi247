@@ -23,7 +23,7 @@
 
 ## Testing specific endpoints: [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/14dde3cb05c0f432a5d1)
 
-- Run the application with `npm run dev` 🚀
+- Run the application with `npm run start` 🚀
 
 ## Available API endpoints:
 

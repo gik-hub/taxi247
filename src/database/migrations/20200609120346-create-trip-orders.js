@@ -8,15 +8,21 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      clients_id: {
+      riders_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'clients' },
+        references: { model: 'riders' },
       },
       pickup_point: {
         type: Sequelize.GEOGRAPHY,
       },
+      pickup_point_name: {
+        type: Sequelize.STRING,
+      },
       destination_point: {
         type: Sequelize.GEOGRAPHY,
+      },
+      destination_point_name: {
+        type: Sequelize.STRING,
       },
       tentative_price: {
         type: Sequelize.INTEGER,

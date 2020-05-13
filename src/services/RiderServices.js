@@ -2,23 +2,24 @@ import database from '../database/models';
 
 class RiderServices {
   static async findAllRiders() {
-    const riders = await database.clients.findAll();
+    const riders = await database.riders.findAll();
     return riders.map((rider) => rider.dataValues);
   }
 
   static async findRiderById(id) {
-    const rider = await database.clients.findOne({
+    const rider = await database.riders.findOne({
       where: { id },
     });
     if (!rider) return null;
     return rider.dataValues;
   }
 
-  static async findCloseDrivers(refPoint, radius) {
-      // get the current location to find against
-    //   const riderLocation = database.trip_orders.find
-      // use the drivers model to find the distances
-
+  static async findRiderOrderById(id) {
+    const riderOrder = await database.trip_orders.findOne({
+      where: { id },
+    });
+    if (!riderOrder) return null;
+    return riderOrder.dataValues;
   }
 }
 

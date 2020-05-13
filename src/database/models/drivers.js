@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       expiry_date: DataTypes.DATE,
       taxi_reg_no: DataTypes.STRING,
       current_location: DataTypes.GEOMETRY,
+      current_location_name: DataTypes.STRING,
       availability_status_id: DataTypes.INTEGER,
     },
     { freezeTableName: true }

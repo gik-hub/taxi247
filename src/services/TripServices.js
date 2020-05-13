@@ -45,27 +45,33 @@ class TripServices {
     const { trip_orders_id, drivers_id } = dataValues;
 
     // update the status of the trip order to resolved -> 5
-    await database.trip_orders.update(
+    const trip = await database.trip_orders.update(
       { trip_order_status_id: 5 },
-      { where: { id: trip_orders_id } }
+      { where: { id: trip_orders_id }, returning: true, plain: true }
     );
 
     // update the status of the driver to free -> 1
-    await database.drivers.update(
+    const driver = await database.drivers.update(
       { availability_status_id: 1 },
-      { where: { id: drivers_id } }
+      { where: { id: drivers_id }, returning: true, plain: true }
     );
 
     // generate an invoice
     const invoice = await database.trip_invoices.create({
-      trip_id: id,
+      trips_id: id,
       trip_orders_id,
       invoice_total: 3434,
       payment_total: 0,
       invoice_date: new Date(),
       due_date: new Date(),
     });
-    return invoice.dataValues;
+    const completedTrip = trip[1];
+    const serviceDriver = driver[1];
+    const myInvoice = invoice.dataValues;
+
+    const data = { completedTrip, serviceDriver, myInvoice };
+
+    return data;
   }
 
   static async getActiveTrips() {
