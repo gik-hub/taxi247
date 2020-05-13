@@ -1,11 +1,11 @@
 export function up(queryInterface, Sequelize) {
   return queryInterface.bulkInsert(
-    'clients',
+    'riders',
     [
       {
-        email: 'tkinnach0@foxnews.com',
-        first_name: 'Tabbitha',
-        last_name: 'Kinnach',
+        email: 'gikandi95@gmail.com',
+        first_name: 'Titus',
+        last_name: 'Gikandi',
         phone_no: '895-871-0591',
         adress: '01 Prairieview Terrace',
         points: 75,
@@ -107,5 +107,5 @@ export function up(queryInterface, Sequelize) {
   );
 }
 export function down(queryInterface, Sequelize) {
-  return queryInterface.bulkDelete('clients', null, {});
+  return queryInterface.bulkDelete('riders', null, {});
 }

@@ -65,8 +65,9 @@ class DriverServices {
   }
 
   static async findDriverInRange(dist, lat, lon) {
-    // ST_MakePoint(longitude, latitude);
-    const query = `
+    try {
+      // ST_MakePoint(longitude, latitude);
+      const query = `
       SELECT * FROM "drivers"
       WHERE 
         ST_DWithin(drivers.current_location,
@@ -74,11 +75,14 @@ class DriverServices {
             ${dist * 1000});
       `;
 
-    const inRange = await database.sequelize.query(query, {
-      type: database.sequelize.QueryTypes.SELECT,
-    });
+      const inRange = await database.sequelize.query(query, {
+        type: database.sequelize.QueryTypes.SELECT,
+      });
 
-    return inRange;
+      return inRange;
+    } catch (error) {
+      console.log('*********** error **************** \n', error);
+    }
   }
 }
 

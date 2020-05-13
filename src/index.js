@@ -36,7 +36,6 @@ app.use((req, res, next) => {
 if (!isProduction) {
   app.use(function (err, req, res, next) {
     console.log(err.stack);
-
     res.status(err.status || 500);
 
     res.json({
