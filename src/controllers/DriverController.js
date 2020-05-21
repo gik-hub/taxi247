@@ -67,6 +67,12 @@ class DriverController {
     return util.send(res);
   }
 
+  /**
+   *
+   * @param {*} req - reqest from the use, contain query values
+   * @param {*} res - response object sent to user
+   * @returns {object} returns an object of available drivers in range
+   */
   static async findDriverInRange(req, res) {
     const { distance, latitude, longtude } = req.query;
     const radius = distance || 3;

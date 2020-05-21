@@ -13,6 +13,12 @@ const {
 const { findDriverInRange } = DriverServices;
 
 class RiderController {
+  /**
+   *
+   * @param {*} req - null
+   * @param {*} res - response object sent to user
+   * @returns {object} returns an object of available riders
+   */
   static async getAllRiders(req, res) {
     try {
       const riders = await findAllRiders();
@@ -25,6 +31,12 @@ class RiderController {
     }
   }
 
+  /**
+   *
+   * @param {*} req - reqest from the use, contain id param
+   * @param {*} res - response object sent to user
+   * @returns {object} returns an object of a specific rider
+   */
   static async getSpecificRider(req, res) {
     try {
       const rider = await findRiderById(req.params.id);
@@ -41,6 +53,12 @@ class RiderController {
     }
   }
 
+  /**
+   *
+   * @param {*} req - reqest from the use, contain query values
+   * @param {*} res - response object sent to user
+   * @returns {object} returns an object of specific trip order
+   */
   static async getSpecificRiderOrder(req, res) {
     try {
       const ridersOrder = await findRiderOrderById(req.params.id);
@@ -57,6 +75,12 @@ class RiderController {
     }
   }
 
+  /**
+   *
+   * @param {*} req - reqest from the use, contain query values
+   * @param {*} res - response object sent to user
+   * @returns {object} returns an object of close drivers in a radius drivers
+   */
   static async getCloseDrivers(req, res) {
     const { distance } = req.query;
     const { refLocation } = req.body;

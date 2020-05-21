@@ -2,6 +2,10 @@ import { Op } from 'sequelize';
 import database from '../database/models';
 
 class DriverServices {
+  /**
+   *
+   * @returns {object} returns an object of available drivers
+   */
   static async getAllDrivers() {
     try {
       const drivers = await database.drivers.findAll();
@@ -11,7 +15,11 @@ class DriverServices {
       throw 'Server error';
     }
   }
-
+  /**
+   *
+   * @param {*} id - the id of the specific driver
+   * @returns {object} returns an object driver or null
+   */
   static async findDriverById(id) {
     try {
       const searchDriver = await database.drivers.findOne({
@@ -24,6 +32,11 @@ class DriverServices {
     }
   }
 
+  /**
+   *
+   * @param {*} id - the id of the specific driver
+   * @returns {object} returns an object driver who is free or null
+   */
   static async findFreeDriverById(id) {
     try {
       const driver = await database.drivers.findOne({
@@ -45,6 +58,11 @@ class DriverServices {
     }
   }
 
+  /**
+   *
+   * @param {*} status - the status with which we want to search the driver
+   * @returns {object} returns an array object drivers with that status or an empty array
+   */
   static async findDriverByStatus(status) {
     try {
       const result = await database.drivers.findAll({
@@ -64,6 +82,13 @@ class DriverServices {
     }
   }
 
+  /**
+   *
+   * @param {*} dist - the radius in which we want to search
+   * @param {*} lat - the latitude of the reference point
+   * @param {*} lon - the longtude of the reference point
+   * @returns {object} returns an object driver who is free and in that radius
+   */
   static async findDriverInRange(dist, lat, lon) {
     try {
       // ST_MakePoint(longitude, latitude);

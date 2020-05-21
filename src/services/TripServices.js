@@ -1,6 +1,11 @@
 import database from '../database/models';
 
 class TripServices {
+  /**
+   *
+   * @param {*} tripRequest - an object containign the details of the trip we want to create
+   * @returns {object} returns an object with the created trip
+   */
   static async createTrip(tripRequest) {
     try {
       const trip = await database.trips.create(tripRequest);
@@ -20,6 +25,11 @@ class TripServices {
     }
   }
 
+  /**
+   *
+   * @param {*} id - the id of the specific trip
+   * @returns {object} returns an object that trip or null
+   */
   static async getTripById(id) {
     try {
       const trip = await database.trips.findOne({
@@ -32,6 +42,11 @@ class TripServices {
     }
   }
 
+  /**
+   *
+   * @param {*} id - the id of the trip we want to complete
+   * @returns {object} returns an object with the generated invoice, the completed trip and the driver in charge
+   */
   static async completeTripRequest(id) {
     // add the trip end time and completion point
     // drop_point: -> set to current drivers location / set destination
@@ -74,6 +89,10 @@ class TripServices {
     return data;
   }
 
+  /**
+   *
+   * @returns {object} returns an object of all active trips
+   */
   static async getActiveTrips() {
     try {
       const trips = await database.trip_orders.findAll({

@@ -8,6 +8,12 @@ const { createTrip, completeTripRequest, getActiveTrips } = TripServices;
 const { findRiderById } = RiderServices;
 
 class TripController {
+  /**
+   *
+   * @param {*} req - reqest from the use, id of the trip order and driver
+   * @param {*} res - response object sent to user
+   * @returns {object} returns an object of created trip
+   */
   static async createTrip(req, res) {
     try {
       const { trip_orders_id, drivers_id, pickup_point } = req.body;
@@ -30,6 +36,12 @@ class TripController {
     }
   }
 
+  /**
+   *
+   * @param {*} req - reqest from the use, with the id of trip to complete
+   * @param {*} res - response object sent to user
+   * @returns {object} returns an object of the completed trip and an invoice
+   */
   static async completeTrip(req, res) {
     try {
       const { trips_id } = req.body;
@@ -75,6 +87,12 @@ class TripController {
     }
   }
 
+  /**
+   *
+   * @param {*} req - null
+   * @param {*} res - response object sent to user
+   * @returns {object} returns an object of all active trips
+   */
   static async getActiveTripOrders(req, res) {
     try {
       const activeTrips = await getActiveTrips();
